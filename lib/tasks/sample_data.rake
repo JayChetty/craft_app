@@ -15,5 +15,7 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
     end
+    users = User.all
+    users.each {|user| user.practices.create!(craft_id: 1)}
   end
 end

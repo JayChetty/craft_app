@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  name            :string(255)
+#  email           :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  password_digest :string(255)
+#  remember_token  :string(255)
+#  admin           :boolean          default(FALSE)
+#
+
 require 'spec_helper'
 
 describe User do
@@ -17,6 +31,7 @@ describe User do
   it { should respond_to(:remember_token) } 
   it { should respond_to(:admin) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:practices) }
   it { should be_valid }
   it { should_not be_admin }
   
@@ -116,5 +131,19 @@ describe User do
     before { @user.save }
     its(:remember_token) { should_not be_blank }
   end  
-  
+
+  describe "practice associations" do
+    before do 
+      @user.save
+      @user.practices.create(craft_id: 1)      
+    end
+    it "should destroy associated practices" do
+      practices = @user.practices.dup
+      @user.destroy
+      practices.should_not be_empty
+      practices.each do |practice|
+        Practice.find_by_id(practice.id).should be_nil
+      end
+    end
+  end  
 end
