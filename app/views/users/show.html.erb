@@ -15,5 +15,6 @@
   	</ol>
   	<%= will_paginate @practices %>
   	<% end %>
+    <%= link_to "Add Practice", new_practice_path  if current_user?(@user)%> 
   </div> 
 </div>
