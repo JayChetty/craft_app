@@ -122,6 +122,22 @@ describe "Authentication" do
         before { delete user_path(user) }
         specify { response.should redirect_to(root_path) }
       end
-    end      
+
+      describe "On any page eg root" do
+        before { visit root_url }
+        specify { should_not have_link('Crafts') }
+      end      
+    end 
+
+    describe "as admin user" do
+      let(:admin) { FactoryGirl.create(:admin) }
+
+      before { sign_in admin }
+
+      describe "On any page eg root" do
+        before { visit root_url }
+        specify { should have_link('Crafts') }
+      end      
+    end           
   end  
 end

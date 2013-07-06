@@ -1,7 +1,22 @@
 CraftApp::Application.routes.draw do
+  get "crafts/index"
+
+  get "crafts/show"
+
+  get "crafts/new"
+
+  get "crafts/destroy"
+
+  get "crafts/create"
+
+  get "crafts/edit"
+
+  get "crafts/update"
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :practices, only: [:new, :create, :destroy]
+  resources :crafts, only: [:index, :new, :create, :destroy]
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
