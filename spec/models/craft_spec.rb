@@ -19,6 +19,7 @@ describe Craft do
   subject { @craft }
 
   it { should respond_to(:name)}
+  it { should respond_to(:practices)}
   it { should be_valid }
 
 

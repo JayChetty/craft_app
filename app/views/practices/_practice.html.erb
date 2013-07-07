@@ -1,7 +1,9 @@
-<li>
-  <span class = "craft"><%= practice.craft_id %></span>
-  <% if current_user?(practice.user) %>
-    <%= link_to "delete", practice, method: :delete,
-                                    data: { confirm: "You sure?" }%>
-  <% end %>	
-</li>
+<% if Craft.find_by_id(practice.craft_id) %>
+	<li>
+	  <span class = "practice"><%= practice.craft.name %></span>
+	  <% if current_user?(practice.user) %>
+	    <%= link_to "delete", practice, method: :delete,
+	                                    data: { confirm: "You sure?" }%>
+	  <% end %>	
+	</li>
+<% end %>

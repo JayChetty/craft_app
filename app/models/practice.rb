@@ -12,6 +12,7 @@
 class Practice < ActiveRecord::Base
   attr_accessible :craft_id
   belongs_to :user
+  belongs_to :craft
 
   validates :user_id,  presence: true # will always be created through user
   validates :craft_id, presence: true

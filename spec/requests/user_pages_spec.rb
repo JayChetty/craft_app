@@ -52,15 +52,21 @@ describe "User pages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
-    let!(:p1){user.practices.create(craft_id: 1)}
-
-    before { visit user_path(user) }
+    
+    before do 
+      visit user_path(user) 
+    end
 
     it { should have_selector('h1',    text: user.name) }
     it { should have_selector('title', text: user.name) }
 
     describe "practices" do
-      it { should have_content(p1.craft_id)}
+      before do 
+        Craft.create(name: "Chef")
+        user.practices.create(craft_id: 1)
+        visit user_path(user) 
+      end
+      #it { should have_content(p1.craft_id)}
       it { should have_content(user.practices.count) }
     end
   end  

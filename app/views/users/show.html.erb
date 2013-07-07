@@ -9,11 +9,11 @@
   </aside>
   <div class = "span8">
   	<% if @user.practices.any? %>
-  	<h3> Practices (<%= @user.practices.count %>) </h3>
-  	<ol class = "practices">
-  		<%= render @practices %>
-  	</ol>
-  	<%= will_paginate @practices %>
+    	<h3> Practices (<%= @user.practices.count %>) </h3>
+    	<ol class = "practices">
+    		<%= render @practices %>
+    	</ol>
+    	<%= will_paginate @practices %>
   	<% end %>
     <%= link_to "Add Practice", new_practice_path  if current_user?(@user)%> 
   </div> 

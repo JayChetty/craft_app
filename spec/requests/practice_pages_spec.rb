@@ -24,7 +24,10 @@ describe "practice pages" do
 
     describe "with valid information" do
 
-      before { fill_in "Craft", with:1}
+      before do 
+        Craft.create(name: "Chef")
+        fill_in "Craft", with:1        
+      end
       it "should create a practice" do
         expect { click_button "Post" }.to change(Practice, :count).by(1)
       end
@@ -32,7 +35,10 @@ describe "practice pages" do
   end
 
   describe "destruction" do
-    before {user.practices.create!(craft_id: 1)}
+    before do 
+      Craft.create(name: "Chef")
+      user.practices.create!(craft_id: 1)
+    end
 
     describe "as correct user" do
       before { visit user_path(user) }
