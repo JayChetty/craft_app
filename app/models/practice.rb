@@ -16,4 +16,6 @@ class Practice < ActiveRecord::Base
 
   validates :user_id,  presence: true # will always be created through user
   validates :craft_id, presence: true
+
+  validates_uniqueness_of :craft_id,  scope: :user_id
 end
